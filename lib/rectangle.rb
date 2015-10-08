@@ -1,5 +1,8 @@
 class Rectangle
  def initialize(width:,height:)
+    if width <= 0 or height <= 0
+      raise ArgumentError, 'arguments must be positive'
+    end
     @width = width
     @height = height
  end
@@ -7,18 +10,16 @@ class Rectangle
     @height * @width
   end
   def circumference
-    @height + @width + @height + @width
+    (@height + @width) * 2
   end
 end
 
-class Square
+class Square < Rectangle
   def initialize(side:)
-    @side = side
-  end
-  def area
-    @side * @side
-  end
-  def circumference
-    @side * 4
+    if side <= 0
+      raise ArgumentError, 'arguments must be positive'
+    end
+    @width = side
+    @height = side
   end
 end
